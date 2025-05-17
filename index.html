@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CWHM - Construction Work House Maintenance</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+    /* Home services images: clear, square, and responsive */
+    .home-services .image-wrapper img {
+        width: 100%;
+        max-width: 220px;
+        aspect-ratio: 1/1;
+        height: auto;
+        object-fit: cover;
+        border-radius: 16px;
+        margin: 0 auto;
+        display: block;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+        background: transparent;
+        cursor: zoom-in;
+    }
+    .home-services .image-wrapper img:not([src]),
+    .home-services .image-wrapper img[src=""],
+    .home-services .image-wrapper img:not([src]):not([alt]) {
+        background: #ffeaea;
+        border: 2px dashed #ff4d4d;
+        content: 'Image not found';
+    }
+    .services-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        gap: 18px 18px;
+        justify-items: center;
+        align-items: center;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+    .service-item {
+        background: none;
+        box-shadow: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+    }
+    .service-item h3 {
+        margin-bottom: 12px;
+        font-size: 1.2rem;
+        color: #222;
+        font-weight: 600;
+    }
+    .service-item .image-wrapper img {
+        width: 100%;
+        max-width: 180px;
+        aspect-ratio: 1/1;
+        height: auto;
+        object-fit: cover;
+        border-radius: 16px;
+        margin: 0 auto;
+        display: block;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+        background: transparent;
+    }
+    /* Center the joinery item in the last row */
+    .center-item {
+        grid-column: 1 / span 2;
+        justify-self: center;
+    }
+    @media (max-width: 900px) {
+        .services-grid {
+            gap: 10px 6px;
+        }
+    }
+    @media (max-width: 600px) {
+        .services-grid {
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr;
+            gap: 8px 6px;
+        }
+        .center-item {
+            grid-column: 1 / span 2;
+        }
+    }
+    .hero-buttons {
+        margin-top: 24px;
+        display: flex;
+        gap: 18px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .hero-btn, .hero-btn.secondary {
+        display: inline-block;
+        padding: 12px 32px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #222;
+        background: #fff;
+        border-radius: 8px;
+        text-decoration: none;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        border: 2px solid #fff;
+        transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    }
+    .hero-btn:hover, .hero-btn.secondary:hover {
+        background: #f2f2f2;
+        color: #000;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    }
+    .hero-btn.secondary {
+        background: #fff;
+        color: #1a73e8;
+        border: 2px solid #1a73e8;
+    }
+    .hero-btn.secondary:hover {
+        background: #e3f0ff;
+        color: #155ab6;
+    }
+    @media (max-width: 600px) {
+        .hero-btn {
+            padding: 10px 18px;
+            font-size: 1rem;
+        }
+        .hero-buttons {
+            gap: 10px;
+        }
+    }
+    </style>
+
+    <script>
+    // Lightbox for home service images
+    document.addEventListener('DOMContentLoaded', function() {
+        const lightbox = document.createElement('div');
+        lightbox.id = 'lightbox';
+        lightbox.style.cssText = `
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.90); display: flex; align-items: center; justify-content: center;
+            z-index: 9999; display: none;`;
+        const img = document.createElement('img');
+        img.style.cssText = 'max-width: 96vw; max-height: 92vh; border-radius: 18px; box-shadow: 0 0 32px #000; background: #fff;';
+        const closeBtn = document.createElement('button');
+        closeBtn.innerHTML = '&times;';
+        closeBtn.style.cssText = 'position:absolute;top:24px;right:32px;font-size:2.5rem;color:#fff;background:none;border:none;cursor:pointer;z-index:10000;';
+        lightbox.appendChild(img);
+        lightbox.appendChild(closeBtn);
+        document.body.appendChild(lightbox);
+        document.querySelectorAll('.home-services .image-wrapper img').forEach(image => {
+            image.addEventListener('click', function() {
+                if (this.src) {
+                    img.src = this.src;
+                    lightbox.style.display = 'flex';
+                }
+            });
+        });
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox || e.target === closeBtn) {
+                lightbox.style.display = 'none';
+            }
+        });
+    });
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">CWHM</div>
+        <nav>
+            <ul class="desktop-menu">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li class="dropdown">
+                    <a href="projects.html" class="dropbtn">Projects</a>
+                    <ul class="dropdown-content">
+                        <li><a href="projects.html#plastering">Plastering</a></li>
+                        <li><a href="projects.html#plumbing">Plumbing</a></li>
+                        <li><a href="projects.html#tiling">Tiling</a></li>
+                        <li><a href="projects.html#joinery">Joinery</a></li>
+                        <li><a href="projects.html#filling">Filling</a></li>
+                    </ul>
+                </li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="booking.html">Booking</a></li>
+            </ul>
+            <div class="hamburger-menu">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="mobile-nav">
+        <ul>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li class="dropdown">
+                <a href="projects.html" class="dropbtn">Projects</a>
+                <ul class="dropdown-content">
+                    <li><a href="projects.html#plastering">Plastering</a></li>
+                    <li><a href="projects.html#plumbing">Plumbing</a></li>
+                    <li><a href="projects.html#tiling">Tiling</a></li>
+                    <li><a href="projects.html#joinery">Joinery</a></li>
+                    <li><a href="projects.html#filling">Filling</a></li>
+                </ul>
+            </li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="booking.html">Booking</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Construction Work</h1>
+            <h2>House Maintenance</h2>
+            <div class="hero-buttons">
+                <a href="projects.html" class="hero-btn">View Projects</a>
+                <a href="booking.html" class="hero-btn secondary">Book a Service</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Home Services Section -->
+    <section class="home-services">
+        <div class="container">
+            <div class="services-grid">
+                <div class="service-item">
+                    <h3>Plastering</h3>
+                    <div class="image-wrapper">
+                        <img src="attached_assets/plastering.jpg" alt="Plastering Service" onerror="this.style.background='#ffeaea';this.style.border='2px dashed #ff4d4d';this.alt='Image not found';">
+                    </div>
+                </div>
+                <div class="service-item">
+                    <h3>Filling</h3>
+                    <div class="image-wrapper">
+                        <img src="attached_assets/filling.jpg" alt="Filling Service">
+                    </div>
+                </div>
+                <div class="service-item">
+                    <h3>Plumbing</h3>
+                    <div class="image-wrapper">
+                        <img src="attached_assets/plumping.jpg" alt="Plumbing Service">
+                    </div>
+                </div>
+                <div class="service-item">
+                    <h3>Tiling</h3>
+                    <div class="image-wrapper">
+                        <img src="attached_assets/tiling.jpg" alt="Tiling Service">
+                    </div>
+                </div>
+                <div class="service-item center-item">
+                    <h3>Joinery</h3>
+                    <div class="image-wrapper">
+                        <img src="attached_assets/joinery.jpg" alt="Joinery Service">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">CWHM</div>
+                <div class="footer-info">
+                    <p>Construction Work House Maintenance</p>
+                    <p>Email: Najiaziz643@gmail.com</p>
+                </div>
+                <div class="footer-nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="booking.html">Booking</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 CWHM. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
